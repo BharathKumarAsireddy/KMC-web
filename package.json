@@ -1,0 +1,9 @@
+{
+  "name": "kmc-groups-website",
+  "version": "1.0.0",
+  "description": "KMC Groups PVT LTD — Corporate Website",
+  "scripts": {
+    "dev": "npx live-server --host=localhost --port=3000 --open=/index.html",
+    "start": "npx serve ."
+  }
+}

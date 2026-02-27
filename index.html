@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KMC Groups PVT LTD — Excellence in Real Estate, Restaurant & Construction. Building legacies since 1999." />
+  <title>KMC Groups PVT LTD | Real Estate · Restaurant · Construction</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏛</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar navbar--transparent" id="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="navbar__inner">
+
+        <!-- Logo -->
+        <a href="#home" class="navbar__logo" aria-label="KMC Groups Home">
+          <span class="logo-kmc">KMC</span>
+          <span class="logo-groups">Groups PVT LTD</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <ul class="navbar__links" role="list">
+          <li><a href="#home"         class="nav-link active">Home</a></li>
+          <li><a href="#about"        class="nav-link">About</a></li>
+          <li class="nav-dropdown">
+            <button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+              Our Businesses
+              <svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-dropdown__menu" role="list">
+              <li><a href="pages/real-estate.html"  class="nav-dropdown__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+                Real Estate
+              </a></li>
+              <li><a href="pages/restaurant.html"   class="nav-dropdown__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/></svg>
+                Restaurant
+              </a></li>
+              <li><a href="pages/construction.html" class="nav-dropdown__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/></svg>
+                Construction
+              </a></li>
+            </ul>
+          </li>
+          <li><a href="#projects"     class="nav-link">Projects</a></li>
+          <li><a href="#team"         class="nav-link">Team</a></li>
+          <li><a href="#contact"      class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- CTA -->
+        <div class="navbar__cta">
+          <a href="#contact" class="btn btn--primary btn--sm">Get In Touch</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#home"      class="mobile-menu__link">Home</a>
+    <a href="#about"     class="mobile-menu__link">About Us</a>
+
+    <!-- Businesses expandable group -->
+    <div class="mobile-menu__businesses">
+      <button class="mobile-menu__link mobile-menu__group-trigger" aria-expanded="false">
+        Our Businesses
+        <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-menu__sub-links" role="list">
+        <a href="pages/real-estate.html"  class="mobile-menu__sub-link">Real Estate</a>
+        <a href="pages/restaurant.html"   class="mobile-menu__sub-link">Restaurant</a>
+        <a href="pages/construction.html" class="mobile-menu__sub-link">Construction</a>
+      </div>
+    </div>
+
+    <a href="#projects"  class="mobile-menu__link">Projects</a>
+    <a href="#team"      class="mobile-menu__link">Team</a>
+    <a href="#contact"   class="mobile-menu__link">Contact</a>
+    <div class="mobile-menu__cta">
+      <a href="#contact" class="btn btn--primary btn--lg">Get In Touch</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero__bg">
+        <img
+          src="https://picsum.photos/seed/kmcgrouphero/1920/1080"
+          alt="KMC Groups — Building legacies across India"
+          class="hero__img"
+          loading="eager"
+        />
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <!-- Animated gradient orbs for depth & AI-era atmosphere -->
+        <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+        <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+        <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+        <!-- Geometric mesh grid -->
+        <div class="hero__mesh" aria-hidden="true"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span>25+ Years of Excellence</span>
+          </div>
+
+          <h1 class="hero__title">
+            <span class="line">Building Tomorrow's</span>
+            <span class="line accent text-gold-shine">Legacy Today</span>
+          </h1>
+
+          <p class="hero__subtitle">
+            KMC Groups PVT LTD — A multi-vertical enterprise shaping skylines,
+            crafting dining experiences, and delivering world-class construction across India.
+          </p>
+
+          <div class="hero__cta">
+            <a href="#divisions" class="btn btn--primary btn--xl">
+              Explore Our Ventures
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+            <a href="#about" class="btn btn--outline-white btn--xl">Our Story</a>
+          </div>
+
+          <!-- Business sector pills — glass morphism chips -->
+          <div class="hero__sectors" role="list" aria-label="Our business sectors">
+            <a href="pages/real-estate.html" class="hero__sector-pill hero__sector-pill--realestate" role="listitem">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/><rect x="9" y="15" width="6" height="6"/></svg>
+              Real Estate
+            </a>
+            <a href="pages/restaurant.html" class="hero__sector-pill hero__sector-pill--restaurant" role="listitem">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/></svg>
+              Restaurant
+            </a>
+            <a href="pages/construction.html" class="hero__sector-pill hero__sector-pill--construction" role="listitem">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/></svg>
+              Construction
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating stats glass card (desktop) -->
+      <div class="hero__float-card" aria-hidden="true">
+        <div class="hero__float-stat">
+          <span class="hero__float-num">500+</span>
+          <span class="hero__float-label">Projects Delivered</span>
+        </div>
+        <div class="hero__float-stat">
+          <span class="hero__float-num">10K+</span>
+          <span class="hero__float-label">Happy Clients</span>
+        </div>
+        <div class="hero__float-stat">
+          <span class="hero__float-num">15+</span>
+          <span class="hero__float-label">Cities Across India</span>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="hero__scroll" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to content">
+        <span>Scroll</span>
+        <div class="hero__scroll-arrow"></div>
+      </div>
+
+      <!-- Ticker -->
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <!-- Duplicated for seamless loop -->
+          <span class="ticker__item">Real Estate<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Restaurant &amp; Hospitality<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Construction<span class="ticker__dot"></span></span>
+          <span class="ticker__item">500+ Projects Completed<span class="ticker__dot"></span></span>
+          <span class="ticker__item">10,000+ Happy Clients<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Serving Across India<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Est. 1999<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Real Estate<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Restaurant &amp; Hospitality<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Construction<span class="ticker__dot"></span></span>
+          <span class="ticker__item">500+ Projects Completed<span class="ticker__dot"></span></span>
+          <span class="ticker__item">10,000+ Happy Clients<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Serving Across India<span class="ticker__dot"></span></span>
+          <span class="ticker__item">Est. 1999<span class="ticker__dot"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT SECTION
+         ============================================================ -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about__inner">
+
+          <!-- Visual -->
+          <div class="about__visual reveal-left">
+            <div class="about__accent-shape" aria-hidden="true"></div>
+            <div class="about__img-wrap">
+              <img
+                src="https://picsum.photos/seed/kmcabout2/800/900"
+                alt="KMC Groups headquarters and leadership"
+                class="about__img"
+                loading="lazy"
+              />
+            </div>
+            <div class="about__badge-float float-badge">
+              <span class="number" data-counter="25" data-suffix="+">25+</span>
+              <span class="label">Years of Trust</span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="about__content reveal-right">
+            <span class="section-tag">Who We Are</span>
+            <div class="gold-rule gold-rule--left"></div>
+            <h2 class="section-title">A Legacy Built on <span class="text-gold">Vision</span> &amp; <em>Values</em></h2>
+            <p class="about__text">
+              Founded in 1999, KMC Groups PVT LTD has grown from a single real estate venture into one of India's most respected multi-sector enterprises. Our portfolio spans premium real estate development, award-winning dining, and precision construction — each division driven by an uncompromising commitment to quality.
+            </p>
+            <p class="about__text">
+              Over the past two and a half decades, we have built not just structures and spaces, but enduring relationships with the communities we serve. Every project we undertake carries the weight of our promise: to deliver excellence that stands the test of time.
+            </p>
+
+            <!-- Values -->
+            <ul class="about__values" role="list">
+              <li class="about__value-item">
+                <div class="about__value-icon" aria-hidden="true">
+                  <svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg>
+                </div>
+                <span class="about__value-text">Uncompromising quality in every project we deliver</span>
+              </li>
+              <li class="about__value-item">
+                <div class="about__value-icon" aria-hidden="true">
+                  <svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg>
+                </div>
+                <span class="about__value-text">Client-first approach — your vision is our blueprint</span>
+              </li>
+              <li class="about__value-item">
+                <div class="about__value-icon" aria-hidden="true">
+                  <svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg>
+                </div>
+                <span class="about__value-text">Transparent operations and integrity in all dealings</span>
+              </li>
+              <li class="about__value-item">
+                <div class="about__value-icon" aria-hidden="true">
+                  <svg viewBox="0 0 10 10"><polyline points="1.5,5.5 4,8 8.5,2"/></svg>
+                </div>
+                <span class="about__value-text">Innovation-driven, sustainability-conscious development</span>
+              </li>
+            </ul>
+
+            <!-- Mini Stats -->
+            <div class="about__mini-stats">
+              <div class="mini-stat">
+                <span class="mini-stat__number"><span data-counter="500" data-suffix="+">500+</span></span>
+                <span class="mini-stat__label">Projects Completed</span>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-stat__number"><span data-counter="10" data-suffix="K+">10K+</span></span>
+                <span class="mini-stat__label">Happy Clients</span>
+              </div>
+              <div class="mini-stat">
+                <span class="mini-stat__number"><span data-counter="15" data-suffix="+">15+</span></span>
+                <span class="mini-stat__label">Cities Present</span>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn btn--secondary btn--lg" style="margin-top:2.5rem;">
+              Partner With Us
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BUSINESS DIVISIONS
+         ============================================================ -->
+    <section id="divisions" aria-labelledby="divisions-title">
+
+      <!-- Header above the cards -->
+      <div class="section section--subtle" style="padding-bottom:0;">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">What We Do</span>
+            <div class="gold-rule"></div>
+            <h2 class="section-title" id="divisions-title">Three Pillars of <span class="text-gold">Excellence</span></h2>
+            <p class="section-subtitle">
+              From dream homes to fine dining and precision construction — KMC Groups delivers
+              world-class experiences across every vertical we operate in.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Division Cards — full width, no container -->
+      <div class="divisions__grid" role="list">
+
+        <!-- Real Estate -->
+        <article class="division-card division-card--realestate reveal-left" role="listitem">
+          <img
+            src="https://picsum.photos/seed/architecture-building-city/900/1100"
+            alt="KMC Real Estate — Premium residential and commercial properties"
+            class="division-card__img"
+            loading="lazy"
+          />
+          <div class="division-card__overlay" aria-hidden="true"></div>
+          <div class="division-card__number" aria-hidden="true">01</div>
+          <div class="division-card__content">
+            <div class="division-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/><rect x="9" y="15" width="6" height="6"/></svg>
+            </div>
+            <span class="division-card__tag">Division 01</span>
+            <h3 class="division-card__title">Real Estate</h3>
+            <p class="division-card__desc">
+              Premium residential complexes, commercial spaces, and luxury villas crafted for modern living.
+              From ready-to-move properties to bespoke developments — your perfect space awaits.
+            </p>
+            <a href="pages/real-estate.html" class="division-card__link">
+              Explore Properties
+              <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Restaurant -->
+        <article class="division-card division-card--restaurant reveal-scale" role="listitem">
+          <img
+            src="https://picsum.photos/seed/fine-dining-restaurant-food/900/1100"
+            alt="KMC Restaurant — Fine dining and culinary excellence"
+            class="division-card__img"
+            loading="lazy"
+          />
+          <div class="division-card__overlay" aria-hidden="true"></div>
+          <div class="division-card__number" aria-hidden="true">02</div>
+          <div class="division-card__content">
+            <div class="division-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/><path d="M16 3l1.5 9H21L19.5 3"/><line x1="17.5" y1="12" x2="17.5" y2="21"/></svg>
+            </div>
+            <span class="division-card__tag">Division 02</span>
+            <h3 class="division-card__title">Restaurant</h3>
+            <p class="division-card__desc">
+              An extraordinary culinary journey where every dish tells a story.
+              Our signature restaurants blend exquisite flavours, elegant ambiance,
+              and impeccable service for an unforgettable experience.
+            </p>
+            <a href="pages/restaurant.html" class="division-card__link">
+              Explore Dining
+              <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Construction -->
+        <article class="division-card division-card--construction reveal-right" role="listitem">
+          <img
+            src="https://picsum.photos/seed/construction-crane-steel/900/1100"
+            alt="KMC Construction — Precision engineering and quality craftsmanship"
+            class="division-card__img"
+            loading="lazy"
+          />
+          <div class="division-card__overlay" aria-hidden="true"></div>
+          <div class="division-card__number" aria-hidden="true">03</div>
+          <div class="division-card__content">
+            <div class="division-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/><line x1="12" y1="12" x2="12" y2="14"/><line x1="8" y1="12" x2="8" y2="14"/><line x1="16" y1="12" x2="16" y2="14"/></svg>
+            </div>
+            <span class="division-card__tag">Division 03</span>
+            <h3 class="division-card__title">Construction</h3>
+            <p class="division-card__desc">
+              From foundations to finishing, KMC Construction delivers projects on time,
+              within budget, and built to the highest standards — residential, commercial,
+              and infrastructure developments across India.
+            </p>
+            <a href="pages/construction.html" class="division-card__link">
+              Explore Projects
+              <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATS SECTION
+         ============================================================ -->
+    <section class="section section--dark" id="stats" aria-label="Company statistics">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">By The Numbers</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title section-title--white">
+            A Track Record That <span class="text-gold">Speaks</span> Volumes
+          </h2>
+        </div>
+        <div class="stats__grid">
+          <div class="stat-item reveal reveal-d1">
+            <div class="stat-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.314 2.686-6 6-6s6 2.686 6 6"/><path d="M20 8v.01"/><path d="M4 8v.01"/></svg>
+            </div>
+            <span class="stat-item__number">
+              <span data-counter="25" data-suffix="">0</span><span class="suffix">+</span>
+            </span>
+            <span class="stat-item__label">Years of Excellence</span>
+          </div>
+          <div class="stat-item reveal reveal-d2">
+            <div class="stat-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <span class="stat-item__number">
+              <span data-counter="500" data-suffix="">0</span><span class="suffix">+</span>
+            </span>
+            <span class="stat-item__label">Projects Completed</span>
+          </div>
+          <div class="stat-item reveal reveal-d3">
+            <div class="stat-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <span class="stat-item__number">
+              <span data-counter="10000" data-suffix="">0</span><span class="suffix">+</span>
+            </span>
+            <span class="stat-item__label">Happy Clients</span>
+          </div>
+          <div class="stat-item reveal reveal-d4">
+            <div class="stat-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <span class="stat-item__number">
+              <span data-counter="15" data-suffix="">0</span><span class="suffix">+</span>
+            </span>
+            <span class="stat-item__label">Cities Across India</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURED PROJECTS
+         ============================================================ -->
+    <section class="section section--light" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Our Portfolio</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="projects-title">Featured <span class="text-gold">Projects</span></h2>
+          <p class="section-subtitle">
+            A showcase of our finest work — spanning luxury residences, premium dining,
+            and landmark construction across India.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="projects__filter reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="realestate">Real Estate</button>
+          <button class="filter-btn" data-filter="restaurant">Restaurant</button>
+          <button class="filter-btn" data-filter="construction">Construction</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects__grid">
+
+          <article class="project-card reveal-left reveal-d1" data-category="realestate">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj1re/600/400" alt="KMC Skyline Residences" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--realestate">Real Estate</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">KMC Skyline Residences</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Mumbai, Maharashtra
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-d2" data-category="restaurant" style="transition-delay:0.15s;">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj2rest/600/400" alt="The Grand KMC Bistro" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--restaurant">Restaurant</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">The Grand KMC Bistro</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Pune, Maharashtra
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-right reveal-d3" data-category="construction">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj3con/600/400" alt="KMC Business Tower" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--construction">Construction</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">KMC Business Tower</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Bangalore, Karnataka
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-left reveal-d4" data-category="realestate">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj4re/600/400" alt="KMC Emerald Villas" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--realestate">Real Estate</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">KMC Emerald Villas</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Goa
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal reveal-d5" data-category="restaurant" style="transition-delay:0.25s;">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj5rest/600/400" alt="Spice Route by KMC" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--restaurant">Restaurant</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Spice Route by KMC</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Hyderabad, Telangana
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-right reveal-d6" data-category="construction">
+            <div class="project-card__img-wrap">
+              <img src="https://picsum.photos/seed/proj6con/600/400" alt="KMC Greenfield Township" class="project-card__img" loading="lazy" />
+              <span class="project-card__badge badge--construction">Construction</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">KMC Greenfield Township</h3>
+              <div class="project-card__meta">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Chennai, Tamil Nadu
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="text-center" style="margin-top:3rem;">
+          <a href="#contact" class="btn btn--outline-gold btn--lg">View All Projects</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHY CHOOSE KMC
+         ============================================================ -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Why KMC Groups</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="features-title">Built on <span class="text-gold">Trust,</span> Driven by <em>Excellence</em></h2>
+          <p class="section-subtitle">
+            Five pillars that define every project, every experience, and every relationship we build.
+          </p>
+        </div>
+
+        <div class="features__grid">
+          <div class="feature-card reveal reveal-d1">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="feature-card__title">25+ Years of Proven Trust</h3>
+            <p class="feature-card__text">
+              A legacy built over two decades of delivering on our promises. Our track record
+              across real estate, dining, and construction speaks for itself.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-d2">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <h3 class="feature-card__title">Innovation at Every Turn</h3>
+            <p class="feature-card__text">
+              We embrace cutting-edge design, smart technology, and sustainable practices
+              to deliver solutions that are as future-ready as they are beautiful.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-d3">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 class="feature-card__title">Quality Without Compromise</h3>
+            <p class="feature-card__text">
+              From the finest materials to the most skilled professionals — quality is
+              non-negotiable at KMC. Every detail is deliberate, every finish is flawless.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-d4">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="feature-card__title">Client-Centric Approach</h3>
+            <p class="feature-card__text">
+              Your vision is our starting point. We listen, plan, and execute with your
+              goals front and centre — from concept through to completion.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-d5">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3 class="feature-card__title">Pan-India Presence</h3>
+            <p class="feature-card__text">
+              With operations in 15+ cities, KMC Groups brings world-class standards
+              and deep local expertise to every corner of the country.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-d6">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3 class="feature-card__title">On Time, Every Time</h3>
+            <p class="feature-card__text">
+              We understand that time is invaluable. Our disciplined project management
+              ensures timely delivery without sacrificing an ounce of quality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS
+         ============================================================ -->
+    <section class="section section--subtle" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Client Stories</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="testimonials-title">What Our <span class="text-gold">Clients</span> Say</h2>
+          <p class="section-subtitle">
+            The most meaningful measure of our success is the satisfaction of the people we serve.
+          </p>
+        </div>
+
+        <div class="testimonials__carousel reveal">
+          <div class="testimonials__track">
+
+            <div class="testimonial-card">
+              <span class="testimonial-card__quote-icon" aria-hidden="true">"</span>
+              <p class="testimonial-card__text">
+                "KMC Groups delivered our dream home with a level of craftsmanship and attention
+                to detail that far exceeded our expectations. Every room, every corner — perfection.
+                I wouldn't trust anyone else with a project this important."
+              </p>
+              <div class="testimonial-card__author">
+                <img src="https://picsum.photos/seed/person1/80/80" alt="Ananya Krishnan" class="testimonial-card__avatar" loading="lazy" />
+                <div class="testimonials__stars" aria-label="5 out of 5 stars">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                </div>
+                <span class="testimonial-card__name">Ananya Krishnan</span>
+                <span class="testimonial-card__role">Homeowner — KMC Skyline Residences, Mumbai</span>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <span class="testimonial-card__quote-icon" aria-hidden="true">"</span>
+              <p class="testimonial-card__text">
+                "The Grand KMC Bistro is a culinary gem. The ambiance is luxurious, the food
+                is exquisite, and the service is impeccable. We host all our corporate dinners there —
+                it always leaves a lasting impression on our guests."
+              </p>
+              <div class="testimonial-card__author">
+                <img src="https://picsum.photos/seed/person2/80/80" alt="Rahul Desai" class="testimonial-card__avatar" loading="lazy" />
+                <div class="testimonials__stars" aria-label="5 out of 5 stars">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                </div>
+                <span class="testimonial-card__name">Rahul Desai</span>
+                <span class="testimonial-card__role">CEO — Desai Enterprises, Pune</span>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <span class="testimonial-card__quote-icon" aria-hidden="true">"</span>
+              <p class="testimonial-card__text">
+                "We contracted KMC Construction for our new corporate campus and they delivered
+                an architectural marvel — on time and within budget. Their project management
+                and transparency throughout the process was truly remarkable."
+              </p>
+              <div class="testimonial-card__author">
+                <img src="https://picsum.photos/seed/person3/80/80" alt="Preethi Nair" class="testimonial-card__avatar" loading="lazy" />
+                <div class="testimonials__stars" aria-label="5 out of 5 stars">
+                  <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                </div>
+                <span class="testimonial-card__name">Preethi Nair</span>
+                <span class="testimonial-card__role">Director — TechVista Solutions, Bangalore</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controls -->
+          <div class="testimonials__controls" aria-label="Carousel controls">
+            <button class="carousel-btn carousel-btn--prev" aria-label="Previous testimonial">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div class="carousel-dots" role="group" aria-label="Testimonial indicators">
+              <button class="carousel-dot active" aria-label="Go to testimonial 1"></button>
+              <button class="carousel-dot" aria-label="Go to testimonial 2"></button>
+              <button class="carousel-dot" aria-label="Go to testimonial 3"></button>
+            </div>
+
+            <button class="carousel-btn carousel-btn--next" aria-label="Next testimonial">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TEAM SECTION
+         ============================================================ -->
+    <section class="section" id="team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Leadership</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="team-title">The Minds Behind <span class="text-gold">KMC</span></h2>
+          <p class="section-subtitle">
+            Our leadership team brings decades of combined expertise across real estate,
+            hospitality, and construction — united by a shared passion for excellence.
+          </p>
+        </div>
+
+        <div class="team__grid">
+
+          <div class="team-card reveal-left reveal-d1">
+            <div class="team-card__img-wrap reveal-scale reveal-d2">
+              <img src="https://picsum.photos/seed/team1/400/480" alt="Rajesh Kumar — Chairman & Founder" class="team-card__img" loading="lazy" />
+              <div class="team-card__overlay" aria-hidden="true"></div>
+              <div class="team-card__social">
+                <a href="#" class="team-card__social-link" aria-label="Rajesh Kumar LinkedIn">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <h3 class="team-card__name">Rajesh Kumar</h3>
+              <span class="team-card__role">Chairman &amp; Founder</span>
+              <div class="team-card__divider" aria-hidden="true"></div>
+              <p class="team-card__bio">Visionary leader with 30+ years in the industry. Built KMC from a single project to a multi-sector powerhouse.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal reveal-d2">
+            <div class="team-card__img-wrap reveal-scale reveal-d3">
+              <img src="https://picsum.photos/seed/team2/400/480" alt="Priya Sharma — CEO, Real Estate" class="team-card__img" loading="lazy" />
+              <div class="team-card__overlay" aria-hidden="true"></div>
+              <div class="team-card__social">
+                <a href="#" class="team-card__social-link" aria-label="Priya Sharma LinkedIn">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <h3 class="team-card__name">Priya Sharma</h3>
+              <span class="team-card__role">CEO, Real Estate</span>
+              <div class="team-card__divider" aria-hidden="true"></div>
+              <p class="team-card__bio">Property market expert who has led 200+ premium residential and commercial developments across India.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal reveal-d3">
+            <div class="team-card__img-wrap reveal-scale reveal-d4">
+              <img src="https://picsum.photos/seed/team3/400/480" alt="Arjun Mehta — MD, Hospitality" class="team-card__img" loading="lazy" />
+              <div class="team-card__overlay" aria-hidden="true"></div>
+              <div class="team-card__social">
+                <a href="#" class="team-card__social-link" aria-label="Arjun Mehta LinkedIn">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <h3 class="team-card__name">Arjun Mehta</h3>
+              <span class="team-card__role">MD, Hospitality</span>
+              <div class="team-card__divider" aria-hidden="true"></div>
+              <p class="team-card__bio">Award-winning restaurateur with a culinary philosophy rooted in authentic flavours and exceptional guest experiences.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal-right reveal-d4">
+            <div class="team-card__img-wrap reveal-scale reveal-d5">
+              <img src="https://picsum.photos/seed/team4/400/480" alt="Vikram Singh — Head of Construction" class="team-card__img" loading="lazy" />
+              <div class="team-card__overlay" aria-hidden="true"></div>
+              <div class="team-card__social">
+                <a href="#" class="team-card__social-link" aria-label="Vikram Singh LinkedIn">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <h3 class="team-card__name">Vikram Singh</h3>
+              <span class="team-card__role">Head of Construction</span>
+              <div class="team-card__divider" aria-hidden="true"></div>
+              <p class="team-card__bio">Master engineer overseeing all construction operations, known for delivering complex projects with precision.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+         ============================================================ -->
+    <section class="section section--subtle" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Get In Touch</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="contact-title">Let's Build Something <span class="text-gold">Great Together</span></h2>
+          <p class="section-subtitle">
+            Whether you're looking for your dream home, a dining partnership, or a construction quote —
+            we'd love to hear from you.
+          </p>
+        </div>
+
+        <div class="contact__inner">
+
+          <!-- Info -->
+          <div class="contact__info reveal-left">
+            <p class="contact__info-text">
+              Our team of experts is ready to guide you through every step of your journey with KMC Groups.
+              Reach out through any of the channels below, and we'll respond within 24 hours.
+            </p>
+
+            <div class="contact__detail-list">
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </div>
+                <div class="contact__detail-content">
+                  <span class="contact__detail-label">Visit Us</span>
+                  <span class="contact__detail-value">KMC Tower, Business District, Mumbai — 400001</span>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.07 0h3a2 2 0 012 1.72 13 13 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 13 13 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div class="contact__detail-content">
+                  <span class="contact__detail-label">Call Us</span>
+                  <span class="contact__detail-value">+91 98765 43210</span>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact__detail-content">
+                  <span class="contact__detail-label">Email Us</span>
+                  <span class="contact__detail-value">info@kmcgroups.com</span>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                </div>
+                <div class="contact__detail-content">
+                  <span class="contact__detail-label">Business Hours</span>
+                  <span class="contact__detail-value">Mon – Sat: 9:00 AM – 7:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact__social" aria-label="Social media links">
+              <a href="#" class="social-link" aria-label="KMC Groups on Facebook">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="KMC Groups on Instagram">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="KMC Groups on LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="KMC Groups on Twitter">
+                <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="contact__form reveal-right">
+            <form class="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">Full Name *</label>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Rajesh Kumar" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 98765 43210" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="interest">Business Interest *</label>
+                  <select id="interest" name="interest" class="form-control" required>
+                    <option value="" disabled selected>Select a division</option>
+                    <option value="realestate">Real Estate</option>
+                    <option value="restaurant">Restaurant / Dining</option>
+                    <option value="construction">Construction</option>
+                    <option value="general">General Enquiry</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Your Message *</label>
+                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us about your project or query..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn--submit btn--xl" style="width:100%; margin-top:0.5rem;">
+                <span class="btn-text">Submit Enquiry</span>
+                <svg class="btn-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__top">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <span class="logo-kmc">KMC</span>
+            <span class="logo-groups">Groups PVT LTD</span>
+          </div>
+          <p class="footer__tagline">
+            Building legacies across Real Estate, Hospitality &amp; Construction since 1999.
+            Quality without compromise — always.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Quick Links</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="#home"         class="footer__link">Home</a></li>
+            <li><a href="#about"        class="footer__link">About KMC</a></li>
+            <li><a href="#divisions"    class="footer__link">Our Businesses</a></li>
+            <li><a href="#projects"     class="footer__link">Projects</a></li>
+            <li><a href="#team"         class="footer__link">Leadership Team</a></li>
+            <li><a href="#contact"      class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Our Services</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="pages/real-estate.html"    class="footer__link">Residential Properties</a></li>
+            <li><a href="pages/real-estate.html"    class="footer__link">Commercial Spaces</a></li>
+            <li><a href="pages/restaurant.html"     class="footer__link">Fine Dining</a></li>
+            <li><a href="pages/restaurant.html"     class="footer__link">Event Catering</a></li>
+            <li><a href="pages/construction.html"   class="footer__link">Construction Services</a></li>
+            <li><a href="pages/construction.html"   class="footer__link">Interior Design</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Stay Updated</h4>
+          <p class="footer__newsletter-text">
+            Subscribe to receive updates on new projects, property listings, and exclusive offers from KMC Groups.
+          </p>
+          <form class="footer__newsletter-form" novalidate>
+            <input type="email" placeholder="Enter your email" class="footer__newsletter-input" aria-label="Email for newsletter" />
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; 2025 <span>KMC Groups PVT LTD</span>. All rights reserved.
+        </p>
+        <div class="footer__bottom-links">
+          <a href="#" class="footer__bottom-link">Privacy Policy</a>
+          <a href="#" class="footer__bottom-link">Terms of Service</a>
+          <a href="#" class="footer__bottom-link">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

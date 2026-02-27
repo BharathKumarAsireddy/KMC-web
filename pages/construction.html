@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KMC Construction — Precision engineering and quality craftsmanship. Residential, commercial & infrastructure projects across India." />
+  <title>Construction | KMC Groups PVT LTD</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏗</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <style>
+    /* ---- Construction-specific styles ---- */
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease);
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      border-color: transparent;
+    }
+
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-card__number {
+      font-family: var(--ff-heading);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card__icon {
+      width: 58px;
+      height: 58px;
+      background: var(--bg-subtle);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s var(--ease);
+    }
+
+    .service-card:hover .service-card__icon { background: var(--gold-bg); }
+
+    .service-card__icon svg {
+      width: 26px; height: 26px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 1.5;
+      transition: stroke 0.3s var(--ease);
+    }
+
+    .service-card:hover .service-card__icon svg { stroke: var(--gold); }
+
+    .service-card__title {
+      font-family: var(--ff-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card__desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* Portfolio Filter & Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+
+    .portfolio-card:hover img { transform: scale(1.08); }
+
+    .portfolio-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,46,74,0.9) 0%, rgba(26,46,74,0) 55%);
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+    }
+
+    .portfolio-card:hover .portfolio-card__overlay { opacity: 1; }
+
+    .portfolio-card__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.35s var(--ease);
+    }
+
+    .portfolio-card:hover .portfolio-card__content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .portfolio-card__category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .portfolio-card__title {
+      font-family: var(--ff-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .portfolio-card__location {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.2rem;
+    }
+
+    /* Process Timeline */
+    .process-timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      left: 36px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+    }
+
+    .process-step {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .process-step:last-child { padding-bottom: 0; }
+
+    .process-step__num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--ff-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step__content {
+      padding-top: 0.75rem;
+    }
+
+    .process-step__title {
+      font-family: var(--ff-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step__desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* Stats Banner */
+    .con-stats {
+      background: var(--navy);
+      border-radius: var(--r-xl);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .con-stat__number {
+      font-family: var(--ff-heading);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .con-stat__label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .cert-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s var(--ease);
+    }
+
+    .cert-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(201,168,76,0.2);
+    }
+
+    .cert-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .cert-card__title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .cert-card__sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Inquiry CTA Box */
+    .inquiry-box {
+      background: linear-gradient(135deg, rgba(26,46,74,0.97), rgba(15,25,45,0.99));
+      border-radius: var(--r-xl);
+      padding: clamp(3rem, 5vw, 5rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .inquiry-box::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+    }
+
+    .inquiry-box__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .inquiry-box__content {}
+
+    .inquiry-box__title {
+      font-family: var(--ff-heading);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .inquiry-box__subtitle {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .inquiry-box__perks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .inquiry-perk {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .inquiry-perk svg {
+      width: 15px; height: 15px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2.5;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .con-stats { grid-template-columns: repeat(2, 1fr); }
+      .inquiry-box__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .process-timeline::before { left: 30px; }
+      .process-step__num { width: 60px; height: 60px; font-size: 1.2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+      .con-stats { grid-template-columns: 1fr 1fr; padding: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .cert-grid { grid-template-columns: 1fr; }
+      .con-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar--solid" id="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="../index.html" class="navbar__logo">
+          <span class="logo-kmc">KMC</span>
+          <span class="logo-groups" style="color:var(--navy);">Groups PVT LTD</span>
+        </a>
+        <ul class="navbar__links">
+          <li><a href="../index.html" class="nav-link" style="color:var(--text-muted)">Home</a></li>
+          <li><a href="../index.html#about" class="nav-link" style="color:var(--text-muted)">About</a></li>
+          <li class="nav-dropdown">
+            <button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true" style="color:var(--navy)">
+              Our Businesses
+              <svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-dropdown__menu" role="list">
+              <li><a href="real-estate.html"  class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>Real Estate</a></li>
+              <li><a href="restaurant.html"   class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/></svg>Restaurant</a></li>
+              <li><a href="construction.html" class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/></svg>Construction</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.html#projects" class="nav-link" style="color:var(--text-muted)">Projects</a></li>
+          <li><a href="../index.html#contact" class="nav-link" style="color:var(--text-muted)">Contact</a></li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="#inquiry" class="btn btn--primary btn--sm">Get a Quote</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="../index.html" class="mobile-menu__link">Home</a>
+    <a href="../index.html#about" class="mobile-menu__link">About</a>
+    <div class="mobile-menu__businesses">
+      <button class="mobile-menu__link mobile-menu__group-trigger" aria-expanded="false">
+        Our Businesses
+        <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-menu__sub-links" role="list">
+        <a href="real-estate.html"  class="mobile-menu__sub-link">Real Estate</a>
+        <a href="restaurant.html"   class="mobile-menu__sub-link">Restaurant</a>
+        <a href="construction.html" class="mobile-menu__sub-link">Construction</a>
+      </div>
+    </div>
+    <a href="#portfolio" class="mobile-menu__link">Portfolio</a>
+    <a href="#inquiry" class="mobile-menu__link">Get a Quote</a>
+    <div class="mobile-menu__cta">
+      <a href="#inquiry" class="btn btn--primary btn--lg">Get a Quote</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero" style="height:520px;">
+      <div class="page-hero__bg">
+        <img src="https://picsum.photos/seed/conhero2/1920/700" alt="KMC Construction — Building with precision" class="page-hero__img" loading="eager" />
+        <div class="page-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero__content">
+          <nav class="page-hero__breadcrumb">
+            <a href="../index.html">Home</a><span>/</span><span>Construction</span>
+          </nav>
+          <span class="section-tag" style="margin-bottom:1rem;">Division 03</span>
+          <h1 class="page-hero__title">Building with <span class="text-gold">Precision</span> &amp; Purpose</h1>
+          <p class="page-hero__subtitle" style="max-width:540px;">
+            From foundation to skyline — KMC Construction delivers landmark projects
+            with unmatched engineering excellence and meticulous craftsmanship.
+          </p>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="#inquiry" class="btn btn--primary btn--lg">Request a Quote</a>
+            <a href="#portfolio" class="btn btn--outline-white btn--lg">View Portfolio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BANNER -->
+    <section class="section section--subtle" aria-label="Construction statistics">
+      <div class="container">
+        <div class="con-stats reveal">
+          <div>
+            <span class="con-stat__number" data-counter="250" data-suffix="+">250+</span>
+            <span class="con-stat__label">Buildings Constructed</span>
+          </div>
+          <div>
+            <span class="con-stat__number" data-counter="12" data-suffix="M+">12M+</span>
+            <span class="con-stat__label">Sq.Ft Delivered</span>
+          </div>
+          <div>
+            <span class="con-stat__number" data-counter="99" data-suffix="%">99%</span>
+            <span class="con-stat__label">On-Time Delivery</span>
+          </div>
+          <div>
+            <span class="con-stat__number" data-counter="18" data-suffix="+">18+</span>
+            <span class="con-stat__label">Industry Awards</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section--light" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">What We Build</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="services-title">Our <span class="text-gold">Services</span></h2>
+          <p class="section-subtitle">
+            Full-spectrum construction solutions — from concept design to finished structure —
+            delivered with precision, transparency, and pride.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="service-card reveal-left reveal-d1">
+            <div class="service-card__number">01</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <h3 class="service-card__title">Residential Construction</h3>
+            <p class="service-card__desc">
+              From luxury villas to township developments and high-rise apartments —
+              we build homes that stand for generations, with craftsmanship at every layer.
+            </p>
+          </div>
+
+          <div class="service-card reveal reveal-d2">
+            <div class="service-card__number">02</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3 class="service-card__title">Commercial Buildings</h3>
+            <p class="service-card__desc">
+              Grade-A office parks, retail complexes, and mixed-use developments built
+              for productivity, aesthetics, and long-term tenant satisfaction.
+            </p>
+          </div>
+
+          <div class="service-card reveal-right reveal-d3">
+            <div class="service-card__number">03</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <h3 class="service-card__title">Interior &amp; Fit-Out</h3>
+            <p class="service-card__desc">
+              End-to-end interior design and fit-out services for residential,
+              commercial, and hospitality spaces — turning bare walls into lived experiences.
+            </p>
+          </div>
+
+          <div class="service-card reveal-left reveal-d4">
+            <div class="service-card__number">04</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V8m4-4h8a2 2 0 012 2v14H4V6a2 2 0 012-2z"/><path d="M10 20v-5h4v5"/></svg>
+            </div>
+            <h3 class="service-card__title">Infrastructure Projects</h3>
+            <p class="service-card__desc">
+              Roads, bridges, utilities, and large-scale infrastructure — executed with
+              engineering rigour and environmental responsibility.
+            </p>
+          </div>
+
+          <div class="service-card reveal reveal-d5">
+            <div class="service-card__number">05</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="service-card__title">Renovation &amp; Retrofitting</h3>
+            <p class="service-card__desc">
+              Breathing new life into existing structures — structural upgrades,
+              facade restoration, and modern retrofitting that enhances value and safety.
+            </p>
+          </div>
+
+          <div class="service-card reveal-right reveal-d6">
+            <div class="service-card__number">06</div>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>
+            </div>
+            <h3 class="service-card__title">Project Management</h3>
+            <p class="service-card__desc">
+              Comprehensive PMC services — from planning and procurement to quality control
+              and handover — ensuring every milestone is met with precision.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Our Portfolio</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="portfolio-title">Projects That <span class="text-gold">Define</span> Skylines</h2>
+          <p class="section-subtitle">
+            A curated selection from our portfolio of 250+ completed projects across India.
+          </p>
+        </div>
+
+        <div class="projects__filter reveal" role="group" aria-label="Portfolio filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="residential">Residential</button>
+          <button class="filter-btn" data-filter="commercial">Commercial</button>
+          <button class="filter-btn" data-filter="infra">Infrastructure</button>
+        </div>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-card project-card reveal-left reveal-d1" data-category="residential">
+            <img src="https://picsum.photos/seed/conp1/600/450" alt="KMC Horizon Towers" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Residential</span>
+              <div class="portfolio-card__title">KMC Horizon Towers</div>
+              <div class="portfolio-card__location">Navi Mumbai · 2023</div>
+            </div>
+          </div>
+
+          <div class="portfolio-card project-card reveal reveal-d2" data-category="commercial">
+            <img src="https://picsum.photos/seed/conp2/600/450" alt="KMC Business Hub" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Commercial</span>
+              <div class="portfolio-card__title">KMC Business Hub</div>
+              <div class="portfolio-card__location">Bengaluru · 2022</div>
+            </div>
+          </div>
+
+          <div class="portfolio-card project-card reveal-right reveal-d3" data-category="infra">
+            <img src="https://picsum.photos/seed/conp3/600/450" alt="KMC Expressway Project" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Infrastructure</span>
+              <div class="portfolio-card__title">KMC Expressway Project</div>
+              <div class="portfolio-card__location">Pune–Nashik · 2024</div>
+            </div>
+          </div>
+
+          <div class="portfolio-card project-card reveal-left reveal-d4" data-category="residential">
+            <img src="https://picsum.photos/seed/conp4/600/450" alt="Greenfield Township" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Residential</span>
+              <div class="portfolio-card__title">Greenfield Township</div>
+              <div class="portfolio-card__location">Chennai · 2023</div>
+            </div>
+          </div>
+
+          <div class="portfolio-card project-card reveal reveal-d5" data-category="commercial">
+            <img src="https://picsum.photos/seed/conp5/600/450" alt="KMC Convention Centre" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Commercial</span>
+              <div class="portfolio-card__title">KMC Convention Centre</div>
+              <div class="portfolio-card__location">Hyderabad · 2021</div>
+            </div>
+          </div>
+
+          <div class="portfolio-card project-card reveal-right reveal-d6" data-category="residential">
+            <img src="https://picsum.photos/seed/conp6/600/450" alt="KMC Riviera Villas" loading="lazy" />
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <span class="portfolio-card__category">Residential</span>
+              <div class="portfolio-card__title">KMC Riviera Villas</div>
+              <div class="portfolio-card__location">Goa · 2022</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK -->
+    <section class="section section--subtle" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Our Process</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="process-title">How We <span class="text-gold">Work</span></h2>
+          <p class="section-subtitle">
+            A transparent, disciplined process that delivers excellence at every stage —
+            from your first consultation to project handover.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,7rem);align-items:center;">
+
+          <div class="process-timeline reveal-left">
+            <div class="process-step">
+              <div class="process-step__num">01</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Consultation &amp; Site Analysis</h3>
+                <p class="process-step__desc">We begin with an in-depth discussion of your vision, budget, and requirements — followed by a thorough site survey and feasibility assessment.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step__num">02</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Design &amp; Planning</h3>
+                <p class="process-step__desc">Our architects and engineers create detailed blueprints, 3D models, and project timelines. You review and approve before a single brick is laid.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step__num">03</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Construction &amp; Execution</h3>
+                <p class="process-step__desc">Our skilled workforce executes with precision — using quality-certified materials, regular quality checks, and transparent progress updates to clients.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step__num">04</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Quality Inspection &amp; Handover</h3>
+                <p class="process-step__desc">A rigorous multi-point inspection before handover — ensuring every element meets our gold standard. Then we hand over the keys with pride.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xl);">
+              <img src="https://picsum.photos/seed/conprocess/700/600" alt="KMC Construction site" style="width:100%;height:520px;object-fit:cover;" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" aria-labelledby="certs-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Accreditations</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="certs-title">Certified &amp; <span class="text-gold">Trusted</span></h2>
+          <p class="section-subtitle">
+            KMC Construction is recognised by India's leading industry bodies,
+            reflecting our commitment to safety, sustainability, and quality.
+          </p>
+        </div>
+
+        <div class="cert-grid">
+          <div class="cert-card reveal reveal-d1">
+            <span class="cert-card__icon">🏛</span>
+            <div class="cert-card__title">ISO 9001:2015</div>
+            <div class="cert-card__sub">Quality Management System Certified</div>
+          </div>
+          <div class="cert-card reveal reveal-d2">
+            <span class="cert-card__icon">🌿</span>
+            <div class="cert-card__title">IGBC Gold Member</div>
+            <div class="cert-card__sub">Green Building Council India</div>
+          </div>
+          <div class="cert-card reveal reveal-d3">
+            <span class="cert-card__icon">🔒</span>
+            <div class="cert-card__title">OHSAS 18001</div>
+            <div class="cert-card__sub">Occupational Health &amp; Safety</div>
+          </div>
+          <div class="cert-card reveal reveal-d4">
+            <span class="cert-card__icon">⭐</span>
+            <div class="cert-card__title">CIDC Excellence Award</div>
+            <div class="cert-card__sub">Construction Industry Development Council</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INQUIRY / QUOTE FORM -->
+    <section class="section section--subtle" id="inquiry">
+      <div class="container">
+        <div class="inquiry-box reveal">
+          <div class="inquiry-box__inner">
+
+            <div class="inquiry-box__content">
+              <span class="section-tag" style="margin-bottom:1rem;">Start Your Project</span>
+              <h2 class="inquiry-box__title">
+                Let's Build Something <span class="text-gold">Extraordinary</span> Together
+              </h2>
+              <p class="inquiry-box__subtitle">
+                Share your project details and our construction experts will reach out
+                within 24 hours with an initial assessment and no-obligation consultation.
+              </p>
+              <div class="inquiry-box__perks">
+                <div class="inquiry-perk">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Free site inspection and feasibility report
+                </div>
+                <div class="inquiry-perk">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Detailed project cost estimate
+                </div>
+                <div class="inquiry-perk">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  No-commitment initial consultation
+                </div>
+                <div class="inquiry-perk">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Dedicated project manager assigned
+                </div>
+                <div class="inquiry-perk">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  Timeline and milestone planning
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="contact__form" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+                <form class="contact-form" novalidate>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="inq-name" style="color:rgba(255,255,255,0.75)">Full Name *</label>
+                      <input type="text" id="inq-name" class="form-control" placeholder="Your name" required
+                        style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:white;" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="inq-phone" style="color:rgba(255,255,255,0.75)">Phone *</label>
+                      <input type="tel" id="inq-phone" class="form-control" placeholder="+91 98765 43210" required
+                        style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:white;" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="inq-email" style="color:rgba(255,255,255,0.75)">Email Address</label>
+                    <input type="email" id="inq-email" class="form-control" placeholder="you@example.com"
+                      style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:white;" />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label" for="inq-type" style="color:rgba(255,255,255,0.75)">Project Type</label>
+                      <select id="inq-type" class="form-control" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);">
+                        <option value="" style="background:#1a2e4a">Select type</option>
+                        <option style="background:#1a2e4a">Residential Building</option>
+                        <option style="background:#1a2e4a">Commercial Complex</option>
+                        <option style="background:#1a2e4a">Villa / Bungalow</option>
+                        <option style="background:#1a2e4a">Infrastructure</option>
+                        <option style="background:#1a2e4a">Renovation</option>
+                        <option style="background:#1a2e4a">Interior Fit-Out</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="inq-budget" style="color:rgba(255,255,255,0.75)">Budget Range</label>
+                      <select id="inq-budget" class="form-control" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);">
+                        <option value="" style="background:#1a2e4a">Approximate budget</option>
+                        <option style="background:#1a2e4a">Under ₹25 Lakh</option>
+                        <option style="background:#1a2e4a">₹25L – ₹1 Crore</option>
+                        <option style="background:#1a2e4a">₹1Cr – ₹5Cr</option>
+                        <option style="background:#1a2e4a">₹5Cr – ₹20Cr</option>
+                        <option style="background:#1a2e4a">Above ₹20 Crore</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="inq-message" style="color:rgba(255,255,255,0.75)">Project Details *</label>
+                    <textarea id="inq-message" class="form-control" rows="4"
+                      placeholder="Describe your project — location, area, requirements, timeline..."
+                      required
+                      style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:white;"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn--primary btn--xl" style="width:100%">
+                    Get Free Consultation
+                    <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="padding:2rem 0;">
+        <p class="footer__copy">&copy; 2025 <span>KMC Groups PVT LTD</span>. All rights reserved.</p>
+        <a href="../index.html" class="btn btn--ghost btn--sm">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Portfolio filter (reuse main.js initProjectFilter via data-category)
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+          const cat = card.dataset.category;
+          if (filter === 'all' || cat === filter) {
+            card.classList.remove('hide');
+          } else {
+            card.classList.add('hide');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

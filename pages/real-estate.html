@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KMC Real Estate — Premium residential & commercial properties. Find your perfect space with KMC Groups PVT LTD." />
+  <title>Real Estate | KMC Groups PVT LTD</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏛</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <style>
+    /* ---- Page-specific styles ---- */
+    .property-search {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 2rem 2.5rem;
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-top: -3.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-field {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .search-field label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .search-field select,
+    .search-field input {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      background: var(--bg-light);
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-field select:focus,
+    .search-field input:focus {
+      border-color: var(--gold);
+    }
+
+    /* Property Cards */
+    .property-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s var(--ease);
+    }
+
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .property-card__img-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .property-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+
+    .property-card:hover .property-card__img {
+      transform: scale(1.06);
+    }
+
+    .property-card__status {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.28rem 0.8rem;
+      border-radius: var(--r-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .status--ready   { background: #2D6A4F; color: white; }
+    .status--under   { background: var(--gold); color: var(--navy-dark); }
+    .status--upcoming{ background: var(--navy); color: white; }
+
+    .property-card__wishlist {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 34px;
+      height: 34px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .property-card__wishlist:hover { background: var(--gold); }
+    .property-card__wishlist svg {
+      width: 16px; height: 16px;
+      stroke: var(--text-muted);
+      fill: none;
+      stroke-width: 2;
+      transition: stroke 0.2s;
+    }
+
+    .property-card__body {
+      padding: 1.5rem;
+    }
+
+    .property-card__price {
+      font-family: var(--ff-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .property-card__price span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--ff-body);
+    }
+
+    .property-card__title {
+      font-family: var(--ff-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .property-card__location {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .property-card__location svg {
+      width: 13px; height: 13px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .property-card__specs {
+      display: flex;
+      gap: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .spec-item svg {
+      width: 14px; height: 14px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Featured Development */
+    .dev-card {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      min-height: 440px;
+      border: 1px solid var(--border-light);
+    }
+
+    .dev-card__img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dev-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .dev-card:hover .dev-card__img { transform: scale(1.05); }
+
+    .dev-card__badge {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: var(--r-full);
+    }
+
+    .dev-card__body {
+      background: var(--white);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .dev-card__tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .dev-card__title {
+      font-family: var(--ff-heading);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .dev-card__desc {
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .dev-card__highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .highlight-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* Why Choose Real Estate */
+    .re-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .re-feature {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s var(--ease);
+    }
+
+    .re-feature:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      border-color: transparent;
+    }
+
+    .re-feature__icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gold-bg);
+      border: 1.5px solid rgba(201,168,76,0.3);
+      border-radius: var(--r-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .re-feature__icon svg {
+      width: 28px; height: 28px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .re-feature__title {
+      font-family: var(--ff-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .re-feature__text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1024px) {
+      .dev-card { grid-template-columns: 1fr; }
+      .dev-card__img-wrap { height: 300px; }
+      .re-feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .property-search { flex-direction: column; }
+      .re-feature-grid { grid-template-columns: 1fr; }
+      .dev-card__body { padding: 2rem; }
+      .dev-card__title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar--solid" id="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="../index.html" class="navbar__logo">
+          <span class="logo-kmc">KMC</span>
+          <span class="logo-groups" style="color:var(--navy);">Groups PVT LTD</span>
+        </a>
+        <ul class="navbar__links">
+          <li><a href="../index.html"       class="nav-link" style="color:var(--text-muted)">Home</a></li>
+          <li><a href="../index.html#about" class="nav-link" style="color:var(--text-muted)">About</a></li>
+          <li class="nav-dropdown">
+            <button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true" style="color:var(--navy)">
+              Our Businesses
+              <svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-dropdown__menu" role="list">
+              <li><a href="real-estate.html"  class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>Real Estate</a></li>
+              <li><a href="restaurant.html"   class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/></svg>Restaurant</a></li>
+              <li><a href="construction.html" class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/></svg>Construction</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.html#projects"  class="nav-link" style="color:var(--text-muted)">Projects</a></li>
+          <li><a href="../index.html#contact"   class="nav-link" style="color:var(--text-muted)">Contact</a></li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="../index.html#contact" class="btn btn--primary btn--sm">Get In Touch</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="../index.html"         class="mobile-menu__link">Home</a>
+    <a href="../index.html#about"   class="mobile-menu__link">About</a>
+    <div class="mobile-menu__businesses">
+      <button class="mobile-menu__link mobile-menu__group-trigger" aria-expanded="false">
+        Our Businesses
+        <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-menu__sub-links" role="list">
+        <a href="real-estate.html"  class="mobile-menu__sub-link">Real Estate</a>
+        <a href="restaurant.html"   class="mobile-menu__sub-link">Restaurant</a>
+        <a href="construction.html" class="mobile-menu__sub-link">Construction</a>
+      </div>
+    </div>
+    <a href="../index.html#projects"  class="mobile-menu__link">Projects</a>
+    <a href="../index.html#contact"   class="mobile-menu__link">Contact</a>
+    <div class="mobile-menu__cta">
+      <a href="../index.html#contact" class="btn btn--primary btn--lg">Get In Touch</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="page-hero__bg">
+        <img src="https://picsum.photos/seed/rehero/1920/600" alt="KMC Real Estate" class="page-hero__img" loading="eager" />
+        <div class="page-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero__content">
+          <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <span>Real Estate</span>
+          </nav>
+          <span class="section-tag" style="margin-bottom:1rem;">Division 01</span>
+          <h1 class="page-hero__title">Find Your <span class="text-gold">Perfect</span> Space</h1>
+          <p class="page-hero__subtitle">
+            Premium residential &amp; commercial properties crafted for the discerning buyer.
+            Your dream space is just one conversation away.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPERTY SEARCH BAR -->
+    <section style="padding: 0 0 clamp(48px,6vw,80px);">
+      <div class="container">
+        <div class="property-search reveal">
+          <div class="search-field">
+            <label for="prop-type">Property Type</label>
+            <select id="prop-type">
+              <option value="">All Types</option>
+              <option>Apartment</option>
+              <option>Villa</option>
+              <option>Commercial</option>
+              <option>Plot</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="prop-city">City</label>
+            <select id="prop-city">
+              <option value="">All Cities</option>
+              <option>Mumbai</option>
+              <option>Pune</option>
+              <option>Bangalore</option>
+              <option>Chennai</option>
+              <option>Hyderabad</option>
+              <option>Goa</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="prop-budget">Budget</label>
+            <select id="prop-budget">
+              <option value="">Any Budget</option>
+              <option>Under ₹50 Lakh</option>
+              <option>₹50L – ₹1 Cr</option>
+              <option>₹1Cr – ₹3Cr</option>
+              <option>Above ₹3 Cr</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="prop-bhk">BHK</label>
+            <select id="prop-bhk">
+              <option value="">Any</option>
+              <option>1 BHK</option>
+              <option>2 BHK</option>
+              <option>3 BHK</option>
+              <option>4+ BHK</option>
+            </select>
+          </div>
+          <button class="btn btn--primary btn--lg" style="flex-shrink:0;min-width:140px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-right:0.4rem" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Search
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTY LISTINGS -->
+    <section class="section section--light" aria-labelledby="listings-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Our Properties</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="listings-title">Curated <span class="text-gold">Listings</span></h2>
+          <p class="section-subtitle">
+            Handpicked properties across India's most sought-after locations —
+            from luxury apartments to sprawling villas.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <div class="property-card reveal-left reveal-d1">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop1/600/400" alt="Skyline Heights, Mumbai" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--ready">Ready to Move</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹1.8 Cr <span>onwards</span></div>
+              <h3 class="property-card__title">Skyline Heights</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Bandra West, Mumbai
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>3 BHK</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>1850 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Floor 14–22</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card reveal reveal-d2">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop2/600/400" alt="Emerald Greens Villa, Goa" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--ready">Ready to Move</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹3.5 Cr <span>onwards</span></div>
+              <h3 class="property-card__title">Emerald Greens Villa</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                North Goa
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>4 BHK</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>4200 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Private Pool</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card reveal-right reveal-d3">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop3/600/400" alt="KMC Park Avenue, Pune" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--under">Under Construction</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹95 L <span>onwards</span></div>
+              <h3 class="property-card__title">KMC Park Avenue</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Wakad, Pune
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>2 &amp; 3 BHK</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>1100–1600 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Dec 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card reveal-left reveal-d4">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop4/600/400" alt="KMC Tech Square, Bangalore" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--ready">Ready to Move</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹2.2 Cr <span>onwards</span></div>
+              <h3 class="property-card__title">KMC Tech Square</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Whitefield, Bangalore
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Commercial</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>500–5000 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Grade A</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card reveal reveal-d5">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop5/600/400" alt="KMC Marina Towers, Chennai" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--upcoming">Upcoming</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹1.4 Cr <span>onwards</span></div>
+              <h3 class="property-card__title">KMC Marina Towers</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Adyar, Chennai
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>2 &amp; 3 BHK</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>1250–1800 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Mar 2027</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card reveal reveal-d6">
+            <div class="property-card__img-wrap">
+              <img src="https://picsum.photos/seed/prop6/600/400" alt="KMC Pearl Residency, Hyderabad" class="property-card__img" loading="lazy" />
+              <span class="property-card__status status--under">Under Construction</span>
+              <div class="property-card__wishlist" aria-label="Save property">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__price">₹1.1 Cr <span>onwards</span></div>
+              <h3 class="property-card__title">KMC Pearl Residency</h3>
+              <div class="property-card__location">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Gachibowli, Hyderabad
+              </div>
+              <div class="property-card__specs">
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>2 BHK</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>1050 sq.ft</div>
+                <div class="spec-item"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Jun 2026</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top:3rem;">
+          <a href="../index.html#contact" class="btn btn--outline-gold btn--lg">View All Properties</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED DEVELOPMENT -->
+    <section class="section" aria-labelledby="featured-dev-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Flagship Project</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="featured-dev-title">Featured <span class="text-gold">Development</span></h2>
+        </div>
+
+        <div class="dev-card reveal">
+          <div class="dev-card__img-wrap">
+            <img src="https://picsum.photos/seed/devfeatured/900/600" alt="KMC Grand Central — Mumbai" class="dev-card__img" loading="lazy" />
+            <span class="dev-card__badge">Premium Launch</span>
+          </div>
+          <div class="dev-card__body">
+            <span class="dev-card__tag">Flagship Residential · Mumbai</span>
+            <h2 class="dev-card__title">KMC Grand Central</h2>
+            <p class="dev-card__desc">
+              Rising 40 floors above Mumbai's skyline, KMC Grand Central redefines urban luxury living.
+              With panoramic sea views, world-class amenities, and sustainable architecture,
+              this is our most ambitious residential offering yet.
+            </p>
+            <ul class="dev-card__highlights">
+              <li class="highlight-item"><span class="highlight-dot"></span>40-storey ultra-luxury tower</li>
+              <li class="highlight-item"><span class="highlight-dot"></span>3 &amp; 4 BHK sky apartments from ₹4.5 Cr</li>
+              <li class="highlight-item"><span class="highlight-dot"></span>Infinity pool, private gym, concierge</li>
+              <li class="highlight-item"><span class="highlight-dot"></span>IGBC Gold Certified Green Building</li>
+            </ul>
+            <a href="../index.html#contact" class="btn btn--primary btn--lg">
+              Register Interest
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY KMC REAL ESTATE -->
+    <section class="section section--subtle" aria-labelledby="re-why-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Why Choose Us</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="re-why-title">Why <span class="text-gold">KMC Real Estate?</span></h2>
+          <p class="section-subtitle">
+            We don't just build homes — we craft lifestyles, deliver security,
+            and create lasting value for every buyer we serve.
+          </p>
+        </div>
+
+        <div class="re-feature-grid">
+          <div class="re-feature reveal reveal-d1">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3 class="re-feature__title">RERA Registered</h3>
+            <p class="re-feature__text">All our projects are fully RERA compliant, ensuring transparency, legal security, and peace of mind for every buyer.</p>
+          </div>
+          <div class="re-feature reveal reveal-d2">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.314 2.686-6 6-6s6 2.686 6 6"/></svg></div>
+            <h3 class="re-feature__title">Dedicated Sales Team</h3>
+            <p class="re-feature__text">Our expert property advisors walk you through every step — from site visits to registration — with personalised attention.</p>
+          </div>
+          <div class="re-feature reveal reveal-d3">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3 class="re-feature__title">Timely Possession</h3>
+            <p class="re-feature__text">We have a proven track record of delivering projects on schedule. Your investment timeline is our commitment.</p>
+          </div>
+          <div class="re-feature reveal reveal-d4">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <h3 class="re-feature__title">Bank Loan Assistance</h3>
+            <p class="re-feature__text">We partner with leading banks to ensure hassle-free home loan processing at competitive interest rates for our buyers.</p>
+          </div>
+          <div class="re-feature reveal reveal-d5">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 6v6l4 2"/></svg></div>
+            <h3 class="re-feature__title">Transparent Pricing</h3>
+            <p class="re-feature__text">No hidden charges, no surprises. Our pricing is clear, comprehensive, and inclusive — what you see is what you pay.</p>
+          </div>
+          <div class="re-feature reveal reveal-d6">
+            <div class="re-feature__icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg></div>
+            <h3 class="re-feature__title">Post-Purchase Support</h3>
+            <p class="re-feature__text">Our relationship doesn't end at handover. Dedicated maintenance and property management services are available to all KMC homeowners.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENQUIRY FORM -->
+    <section class="section section--dark" aria-labelledby="re-enquiry-title">
+      <div class="container container--md">
+        <div class="section-header reveal">
+          <span class="section-tag">Get In Touch</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title section-title--white" id="re-enquiry-title">
+            Schedule a <span class="text-gold">Site Visit</span>
+          </h2>
+          <p class="section-subtitle section-subtitle--white">
+            Let our property experts walk you through your options in person.
+            Fill out the form and we'll reach you within 24 hours.
+          </p>
+        </div>
+
+        <div class="contact__form reveal" style="max-width:700px;margin:0 auto;">
+          <form class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="re-name">Full Name *</label>
+                <input type="text" id="re-name" class="form-control" placeholder="Your full name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="re-phone">Phone Number *</label>
+                <input type="tel" id="re-phone" class="form-control" placeholder="+91 98765 43210" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="re-interest">Interested In</label>
+                <select id="re-interest" class="form-control">
+                  <option value="">Select property type</option>
+                  <option>2 BHK Apartment</option>
+                  <option>3 BHK Apartment</option>
+                  <option>4 BHK / Penthouse</option>
+                  <option>Villa</option>
+                  <option>Commercial Space</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="re-city">Preferred City</label>
+                <select id="re-city" class="form-control">
+                  <option value="">Select city</option>
+                  <option>Mumbai</option>
+                  <option>Pune</option>
+                  <option>Bangalore</option>
+                  <option>Chennai</option>
+                  <option>Hyderabad</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="re-message">Additional Details</label>
+              <textarea id="re-message" class="form-control" rows="4" placeholder="Budget range, preferred location, timeline..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--xl" style="width:100%">
+              Request a Site Visit
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="padding:2rem 0;">
+        <p class="footer__copy">&copy; 2025 <span>KMC Groups PVT LTD</span>. All rights reserved.</p>
+        <a href="../index.html" class="btn btn--ghost btn--sm">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KMC Restaurant — A fine dining experience crafted with passion. Exquisite cuisine, elegant ambiance, and impeccable service." />
+  <title>Restaurant | KMC Groups PVT LTD</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🍽</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <style>
+    /* ---- Restaurant-specific styles ---- */
+
+    /* Ambiance Section */
+    .ambiance__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+
+    .ambiance__img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    .ambiance__img-main {
+      grid-column: 1 / -1;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .ambiance__img-main img,
+    .ambiance__img-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .ambiance__img-main:hover img,
+    .ambiance__img-small:hover img {
+      transform: scale(1.05);
+    }
+
+    .ambiance__img-small {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      height: 180px;
+    }
+
+    /* Menu Tabs */
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .menu-tab {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-full);
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+    }
+
+    .menu-tab:hover {
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .menu-tab.active {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .menu-item {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s var(--ease);
+    }
+
+    .menu-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    .menu-item__img {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--r-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .menu-item__content {
+      flex: 1;
+    }
+
+    .menu-item__name {
+      font-family: var(--ff-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .menu-item__desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-item__price {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.95rem;
+    }
+
+    .menu-item__tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--r-full);
+    }
+
+    .tag--veg   { background: #E8F5E9; color: #2D6A4F; }
+    .tag--nonveg{ background: #FFF3E0; color: #E65100; }
+    .tag--special{ background: var(--gold-bg); color: var(--gold-dark); }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item--large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Chef's Special */
+    .chef-special {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 6rem);
+      align-items: center;
+    }
+
+    .chef-special__img-wrap {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .chef-special__img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+
+    .chef-special__badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: rgba(26,46,74,0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: var(--r-md);
+      padding: 1rem 1.5rem;
+      color: var(--white);
+    }
+
+    .chef-special__badge-title {
+      font-family: var(--ff-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .chef-special__badge-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .chef-special__quote {
+      font-family: var(--ff-heading);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 3px solid var(--gold);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0 2rem;
+      line-height: 1.7;
+    }
+
+    /* Reservation CTA */
+    .reservation {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: var(--r-xl);
+      padding: clamp(3rem, 5vw, 5rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reservation::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .reservation__content { position: relative; z-index: 1; }
+
+    .reservation__title {
+      font-family: var(--ff-heading);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .reservation__subtitle {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .reservation__details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .reservation__detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .reservation__detail svg {
+      width: 16px; height: 16px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    .reservation__form { position: relative; z-index: 1; }
+
+    .reservation__form .contact__form {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .reservation__form .form-label { color: rgba(255,255,255,0.75); }
+
+    .reservation__form .form-control {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+
+    .reservation__form .form-control::placeholder { color: rgba(255,255,255,0.35); }
+
+    .reservation__form .form-control:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Hours & Location */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .hours-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      text-align: center;
+      transition: all 0.3s var(--ease);
+    }
+
+    .hours-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .hours-card__icon {
+      width: 56px; height: 56px;
+      background: var(--gold-bg);
+      border: 1.5px solid rgba(201,168,76,0.3);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .hours-card__icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .hours-card__title {
+      font-family: var(--ff-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .hours-card__hours {
+      font-size: 0.9rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .hours-card__note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .ambiance__inner, .chef-special { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gallery-item--large { grid-column: span 1; grid-row: span 1; }
+      .gallery-grid > * { height: 200px; }
+      .reservation { grid-template-columns: 1fr; }
+      .hours-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .chef-special__img { height: 320px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar--solid" id="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="../index.html" class="navbar__logo">
+          <span class="logo-kmc">KMC</span>
+          <span class="logo-groups" style="color:var(--navy);">Groups PVT LTD</span>
+        </a>
+        <ul class="navbar__links">
+          <li><a href="../index.html" class="nav-link" style="color:var(--text-muted)">Home</a></li>
+          <li><a href="../index.html#about" class="nav-link" style="color:var(--text-muted)">About</a></li>
+          <li class="nav-dropdown">
+            <button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true" style="color:var(--navy)">
+              Our Businesses
+              <svg class="nav-dropdown__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="nav-dropdown__menu" role="list">
+              <li><a href="real-estate.html"  class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>Real Estate</a></li>
+              <li><a href="restaurant.html"   class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v7a5 5 0 0010 0V3"/><line x1="8" y1="3" x2="8" y2="21"/></svg>Restaurant</a></li>
+              <li><a href="construction.html" class="nav-dropdown__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4a2 2 0 014 0v2"/></svg>Construction</a></li>
+            </ul>
+          </li>
+          <li><a href="../index.html#projects" class="nav-link" style="color:var(--text-muted)">Projects</a></li>
+          <li><a href="../index.html#contact" class="nav-link" style="color:var(--text-muted)">Contact</a></li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="#reservation" class="btn btn--primary btn--sm">Reserve a Table</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+          <span class="hamburger__line" style="background:var(--navy)"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="../index.html" class="mobile-menu__link">Home</a>
+    <a href="../index.html#about" class="mobile-menu__link">About</a>
+    <div class="mobile-menu__businesses">
+      <button class="mobile-menu__link mobile-menu__group-trigger" aria-expanded="false">
+        Our Businesses
+        <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="mobile-menu__sub-links" role="list">
+        <a href="real-estate.html"  class="mobile-menu__sub-link">Real Estate</a>
+        <a href="restaurant.html"   class="mobile-menu__sub-link">Restaurant</a>
+        <a href="construction.html" class="mobile-menu__sub-link">Construction</a>
+      </div>
+    </div>
+    <a href="#reservation" class="mobile-menu__link">Reservations</a>
+    <a href="../index.html#contact" class="mobile-menu__link">Contact</a>
+    <div class="mobile-menu__cta">
+      <a href="#reservation" class="btn btn--primary btn--lg">Reserve a Table</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero" style="height:560px;">
+      <div class="page-hero__bg">
+        <img src="https://picsum.photos/seed/resthero2/1920/700" alt="The Grand KMC Bistro — Fine Dining" class="page-hero__img" loading="eager" />
+        <div class="page-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="page-hero__content">
+          <nav class="page-hero__breadcrumb">
+            <a href="../index.html">Home</a><span>/</span><span>Restaurant</span>
+          </nav>
+          <span class="section-tag" style="margin-bottom:1rem;">Division 02</span>
+          <h1 class="page-hero__title">A Culinary <span class="text-gold">Journey</span> Like No Other</h1>
+          <p class="page-hero__subtitle" style="max-width:520px;">
+            Where exquisite cuisine meets elegant ambiance. Every dish, every evening —
+            an experience crafted to be remembered.
+          </p>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="#reservation" class="btn btn--primary btn--lg">Reserve a Table</a>
+            <a href="#menu" class="btn btn--outline-white btn--lg">View Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT RESTAURANT -->
+    <section class="section" id="about-resto">
+      <div class="container">
+        <div class="ambiance__inner">
+
+          <div class="reveal-left">
+            <div class="ambiance__img-grid">
+              <div class="ambiance__img-main">
+                <img src="https://picsum.photos/seed/restambiance1/800/400" alt="Restaurant dining hall" loading="lazy" />
+              </div>
+              <div class="ambiance__img-small">
+                <img src="https://picsum.photos/seed/restambiance2/400/250" alt="Restaurant interior" loading="lazy" />
+              </div>
+              <div class="ambiance__img-small">
+                <img src="https://picsum.photos/seed/restambiance3/400/250" alt="Chef at work" loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <span class="section-tag">Our Story</span>
+            <div class="gold-rule gold-rule--left"></div>
+            <h2 class="section-title">More Than a Meal — <span class="text-gold">An Experience</span></h2>
+            <p style="margin-bottom:1rem;">
+              Established under the KMC Groups umbrella, our restaurants are a celebration of India's rich
+              culinary heritage elevated with contemporary technique and global influences.
+              Every menu item is the result of months of sourcing, testing, and perfecting.
+            </p>
+            <p style="margin-bottom:1.75rem;">
+              Our dining spaces are designed by award-winning interior architects — intimate yet grand,
+              sophisticated yet warm. Whether it's a romantic dinner, a business lunch, or a family
+              celebration, the atmosphere transforms every occasion into something truly special.
+            </p>
+
+            <div class="about__mini-stats" style="padding-top:1.75rem;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+              <div>
+                <span class="mini-stat__number" style="font-family:var(--ff-heading);font-size:2rem;font-weight:800;color:var(--navy);"><span class="text-gold">5</span>+</span>
+                <span class="mini-stat__label" style="font-size:.78rem;color:var(--text-muted);display:block;margin-top:.35rem;">Signature Outlets</span>
+              </div>
+              <div>
+                <span class="mini-stat__number" style="font-family:var(--ff-heading);font-size:2rem;font-weight:800;color:var(--navy);"><span class="text-gold">120</span>+</span>
+                <span class="mini-stat__label" style="font-size:.78rem;color:var(--text-muted);display:block;margin-top:.35rem;">Menu Items</span>
+              </div>
+              <div>
+                <span class="mini-stat__number" style="font-family:var(--ff-heading);font-size:2rem;font-weight:800;color:var(--navy);"><span class="text-gold">3</span></span>
+                <span class="mini-stat__label" style="font-size:.78rem;color:var(--text-muted);display:block;margin-top:.35rem;">Awards Won</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU PREVIEW -->
+    <section class="section section--light" id="menu" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Our Menu</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="menu-title">A Symphony of <span class="text-gold">Flavours</span></h2>
+          <p class="section-subtitle">
+            Handcrafted with premium ingredients, each dish is a chapter in our culinary story.
+          </p>
+        </div>
+
+        <!-- Menu Tabs -->
+        <div class="menu-tabs reveal" role="tablist">
+          <button class="menu-tab active" data-tab="appetizers" role="tab" aria-selected="true">Appetizers</button>
+          <button class="menu-tab" data-tab="mains" role="tab" aria-selected="false">Main Course</button>
+          <button class="menu-tab" data-tab="desserts" role="tab" aria-selected="false">Desserts</button>
+          <button class="menu-tab" data-tab="beverages" role="tab" aria-selected="false">Beverages</button>
+        </div>
+
+        <!-- Appetizers -->
+        <div class="menu-panel active menu-grid" id="tab-appetizers" role="tabpanel">
+          <div class="menu-item reveal reveal-d1">
+            <img src="https://picsum.photos/seed/food1/120/120" alt="Truffle Arancini" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Truffle Arancini</h3>
+              <p class="menu-item__desc">Crispy risotto balls with black truffle, parmesan &amp; lemon aioli</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 480</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal reveal-d2">
+            <img src="https://picsum.photos/seed/food2/120/120" alt="Tandoori Prawns" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Tandoori Tiger Prawns</h3>
+              <p class="menu-item__desc">Jumbo prawns marinated in saffron-yoghurt, grilled in the tandoor</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 780</span>
+                <span class="menu-item__tag tag--nonveg">Non-Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal reveal-d3">
+            <img src="https://picsum.photos/seed/food3/120/120" alt="Burrata" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Burrata &amp; Heirloom Tomato</h3>
+              <p class="menu-item__desc">Creamy burrata with Pachino tomatoes, basil oil &amp; aged balsamic</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 650</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal reveal-d4">
+            <img src="https://picsum.photos/seed/food4/120/120" alt="Lamb Seekh" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Lamb Seekh Kebab</h3>
+              <p class="menu-item__desc">Minced lamb with cardamom, coriander &amp; mint chutney</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 720</span>
+                <span class="menu-item__tag tag--nonveg">Non-Veg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Course -->
+        <div class="menu-panel menu-grid" id="tab-mains" role="tabpanel">
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food5/120/120" alt="Dal Makhani" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Signature Dal Makhani</h3>
+              <p class="menu-item__desc">Black lentils simmered 48 hours with cream &amp; house spice blend</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 520</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food6/120/120" alt="Butter Chicken" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">KMC Butter Chicken</h3>
+              <p class="menu-item__desc">Slow-cooked chicken tikka in velvety tomato-cashew-butter sauce</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 680</span>
+                <span class="menu-item__tag tag--nonveg">Non-Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food7/120/120" alt="Truffle Pasta" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Black Truffle Pappardelle</h3>
+              <p class="menu-item__desc">Fresh pappardelle with wild mushrooms, truffle butter &amp; parmesan</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 890</span>
+                <span class="menu-item__tag tag--special">Chef's Special</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food8/120/120" alt="Lamb Rack" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Herb-Crusted Lamb Rack</h3>
+              <p class="menu-item__desc">French rack with rosemary jus, roasted potatoes &amp; seasonal greens</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 1,450</span>
+                <span class="menu-item__tag tag--nonveg">Non-Veg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="menu-panel menu-grid" id="tab-desserts" role="tabpanel">
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food9/120/120" alt="Gulab Jamun" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Deconstructed Gulab Jamun</h3>
+              <p class="menu-item__desc">Khoya dumplings with rose foam, saffron gelée &amp; pistachio crumble</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 380</span>
+                <span class="menu-item__tag tag--special">Chef's Special</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food10/120/120" alt="Chocolate Fondant" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Dark Chocolate Fondant</h3>
+              <p class="menu-item__desc">Warm 70% cacao fondant with Madagascan vanilla ice cream</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 420</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beverages -->
+        <div class="menu-panel menu-grid" id="tab-beverages" role="tabpanel">
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food11/120/120" alt="Mango Lassi" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">KMC Signature Mango Lassi</h3>
+              <p class="menu-item__desc">Alphonso mango, creamy yoghurt &amp; cardamom blend</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 220</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-item reveal">
+            <img src="https://picsum.photos/seed/food12/120/120" alt="Masala Chai" class="menu-item__img" loading="lazy" />
+            <div class="menu-item__content">
+              <h3 class="menu-item__name">Artisanal Masala Chai</h3>
+              <p class="menu-item__desc">House-blend spiced tea with full-cream milk &amp; ginger</p>
+              <div class="menu-item__footer">
+                <span class="menu-item__price">₹ 150</span>
+                <span class="menu-item__tag tag--veg">Veg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section--subtle" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Gallery</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="gallery-title">A Feast for the <span class="text-gold">Eyes</span></h2>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="gallery-item gallery-item--large">
+            <img src="https://picsum.photos/seed/gal1/800/600" alt="Restaurant interior" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/gal2/400/300" alt="Food presentation" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/gal3/400/300" alt="Dessert plating" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/gal4/400/300" alt="Bar area" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/gal5/400/300" alt="Private dining" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHEF'S SPECIAL -->
+    <section class="section" aria-labelledby="chef-title">
+      <div class="container">
+        <div class="chef-special">
+          <div class="chef-special__img-wrap reveal-left">
+            <img src="https://picsum.photos/seed/chefspecial/700/600" alt="Chef's Special — Black Truffle Pappardelle" class="chef-special__img" loading="lazy" />
+            <div class="chef-special__badge">
+              <span class="chef-special__badge-title">Chef's Recommendation</span>
+              <span class="chef-special__badge-sub">Black Truffle Pappardelle · ₹890</span>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <span class="section-tag">This Month's Feature</span>
+            <div class="gold-rule gold-rule--left"></div>
+            <h2 class="section-title">The Art of <em><span class="text-gold">Fine</span></em> Cooking</h2>
+            <blockquote class="chef-special__quote">
+              "Cooking is not just about feeding — it's about creating moments of pure joy.
+              Every plate that leaves my kitchen carries a piece of my heart."
+            </blockquote>
+            <p style="margin-bottom:1.5rem;">
+              Executive Chef Arjun Mehta brings over 18 years of culinary mastery — trained in
+              France, refined across India. His philosophy blends classical technique with bold
+              Indian flavours, producing dishes that are both familiar and revelatory.
+            </p>
+            <ul style="display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;">
+              <li style="display:flex;align-items:center;gap:.65rem;font-size:.9rem;color:var(--text);font-weight:500;">
+                <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;"></span>
+                18+ years culinary experience
+              </li>
+              <li style="display:flex;align-items:center;gap:.65rem;font-size:.9rem;color:var(--text);font-weight:500;">
+                <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;"></span>
+                Trained under Michelin-starred mentors
+              </li>
+              <li style="display:flex;align-items:center;gap:.65rem;font-size:.9rem;color:var(--text);font-weight:500;">
+                <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;"></span>
+                3x award-winning chef of the year
+              </li>
+            </ul>
+            <a href="#reservation" class="btn btn--primary btn--lg">
+              Reserve & Experience
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOURS & LOCATION -->
+    <section class="section section--light" aria-labelledby="hours-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Find Us</span>
+          <div class="gold-rule"></div>
+          <h2 class="section-title" id="hours-title">Hours &amp; <span class="text-gold">Locations</span></h2>
+        </div>
+
+        <div class="hours-grid">
+          <div class="hours-card reveal reveal-d1">
+            <div class="hours-card__icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            </div>
+            <h3 class="hours-card__title">Lunch</h3>
+            <div class="hours-card__hours">12:00 PM – 3:30 PM</div>
+            <div class="hours-card__note">Monday to Sunday</div>
+          </div>
+          <div class="hours-card reveal reveal-d2">
+            <div class="hours-card__icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            </div>
+            <h3 class="hours-card__title">Dinner</h3>
+            <div class="hours-card__hours">7:00 PM – 11:00 PM</div>
+            <div class="hours-card__note">Monday to Sunday</div>
+          </div>
+          <div class="hours-card reveal reveal-d3">
+            <div class="hours-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <h3 class="hours-card__title">Location</h3>
+            <div class="hours-card__hours">KMC Tower, Bandra</div>
+            <div class="hours-card__note">Mumbai — 400050</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section class="section" id="reservation">
+      <div class="container">
+        <div class="reservation reveal">
+          <div class="reservation__content">
+            <span class="section-tag" style="margin-bottom:1rem;">Make a Reservation</span>
+            <h2 class="reservation__title">Secure Your <span class="text-gold">Table</span> Tonight</h2>
+            <p class="reservation__subtitle">
+              Join us for an evening of extraordinary food, warm hospitality, and memories that last.
+              Reservations recommended — walk-ins subject to availability.
+            </p>
+            <div class="reservation__details">
+              <div class="reservation__detail">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.07 0h3a2 2 0 012 1.72 13 13 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 13 13 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                +91 98765 43210
+              </div>
+              <div class="reservation__detail">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                dining@kmcgroups.com
+              </div>
+              <div class="reservation__detail">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                Lunch: 12PM–3:30PM | Dinner: 7PM–11PM
+              </div>
+            </div>
+          </div>
+
+          <div class="reservation__form">
+            <div class="contact__form">
+              <form class="contact-form" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="res-name">Your Name *</label>
+                    <input type="text" id="res-name" class="form-control" placeholder="Full name" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="res-phone">Phone *</label>
+                    <input type="tel" id="res-phone" class="form-control" placeholder="+91 98765 43210" required />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="res-date">Date *</label>
+                    <input type="date" id="res-date" class="form-control" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="res-time">Time *</label>
+                    <select id="res-time" class="form-control" required>
+                      <option value="">Select time</option>
+                      <option>12:00 PM</option>
+                      <option>12:30 PM</option>
+                      <option>1:00 PM</option>
+                      <option>7:00 PM</option>
+                      <option>7:30 PM</option>
+                      <option>8:00 PM</option>
+                      <option>8:30 PM</option>
+                      <option>9:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="res-guests">Number of Guests</label>
+                  <select id="res-guests" class="form-control">
+                    <option>1 Guest</option>
+                    <option>2 Guests</option>
+                    <option>3–4 Guests</option>
+                    <option>5–6 Guests</option>
+                    <option>Private Dining (7+)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="res-special">Special Requests</label>
+                  <textarea id="res-special" class="form-control" rows="3" placeholder="Anniversary, dietary restrictions, allergies..."></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary btn--xl" style="width:100%">
+                  Confirm Reservation
+                  <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="padding:2rem 0;">
+        <p class="footer__copy">&copy; 2025 <span>KMC Groups PVT LTD</span>. All rights reserved.</p>
+        <a href="../index.html" class="btn btn--ghost btn--sm">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Menu tabs
+    document.querySelectorAll('.menu-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.dataset.tab;
+        document.querySelectorAll('.menu-tab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById('tab-' + targetTab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

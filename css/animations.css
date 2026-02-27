@@ -1,0 +1,399 @@
+/* ============================================================
+   KMC GROUPS — ANIMATIONS & TRANSITIONS
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Scroll pulse for hero arrow */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+
+/* Ticker scroll */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Fade in up — primary reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Fade in left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade in right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer (skeleton loading) */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Float (gentle floating effect) */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Pulse ring */
+@keyframes pulseRing {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+
+/* Gold shimmer */
+@keyframes goldShimmer {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Draw line */
+@keyframes drawLine {
+  from { width: 0; }
+  to   { width: 52px; }
+}
+
+/* Spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Orb Float — gentle drifting for hero gradient blobs */
+@keyframes orbFloat {
+  0%   { transform: translate(0,    0)    scale(1);    }
+  20%  { transform: translate(28px, -18px) scale(1.04); }
+  40%  { transform: translate(-12px, 24px) scale(0.97); }
+  60%  { transform: translate(20px,  18px) scale(1.03); }
+  80%  { transform: translate(-20px, -8px) scale(1.01); }
+  100% { transform: translate(0,    0)    scale(1);    }
+}
+
+/* Pulse dot — for badge live indicator */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* Gradient shift — for card accent bars */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Count up (handled via JS, but easing class) */
+
+/* ============================================================
+   REVEAL CLASSES — JS will add .revealed when in viewport
+   ============================================================ */
+
+/* Base hidden state — fade up */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay variants */
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+.reveal-d5 { transition-delay: 0.40s; }
+.reveal-d6 { transition-delay: 0.48s; }
+.reveal-d7 { transition-delay: 0.56s; }
+.reveal-d8 { transition-delay: 0.64s; }
+
+/* From left — strong slide */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-56px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* From right — strong slide */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(56px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale pop-in */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================
+   HERO ENTRANCE ANIMATIONS (on page load)
+   ============================================================ */
+.hero__badge {
+  animation: fadeInUp 0.7s var(--ease-out) 0.3s both;
+}
+
+.hero__title {
+  animation: fadeInUp 0.8s var(--ease-out) 0.5s both;
+}
+
+.hero__subtitle {
+  animation: fadeInUp 0.8s var(--ease-out) 0.7s both;
+}
+
+.hero__cta {
+  animation: fadeInUp 0.8s var(--ease-out) 0.9s both;
+}
+
+.hero__scroll {
+  animation: fadeIn 1s var(--ease-out) 1.4s both;
+}
+
+/* ============================================================
+   HOVER MICRO-INTERACTIONS
+   ============================================================ */
+
+/* Card lift */
+.card-hover {
+  transition: transform var(--t-normal) var(--ease), box-shadow var(--t-normal) var(--ease);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Image zoom on hover container */
+.img-zoom-wrap {
+  overflow: hidden;
+}
+
+.img-zoom-wrap img {
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.img-zoom-wrap:hover img {
+  transform: scale(1.06);
+}
+
+/* Gold line draw */
+.gold-rule-animated {
+  width: 0;
+  transition: width 0.7s var(--ease-out);
+}
+
+.gold-rule-animated.revealed {
+  width: 52px;
+}
+
+/* ============================================================
+   FLOATING BADGE
+   ============================================================ */
+.float-badge {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ============================================================
+   STAT NUMBER COUNTING (animation class)
+   ============================================================ */
+.stat-item__number {
+  transition: color 0.3s var(--ease);
+}
+
+/* ============================================================
+   LOADING STATE / SKELETON
+   ============================================================ */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--r-sm);
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+.page-fade-in {
+  animation: fadeIn 0.5s var(--ease-out);
+}
+
+/* ============================================================
+   NAVBAR SCROLL TRANSITION — enhanced
+   ============================================================ */
+.navbar {
+  transition:
+    background  0.45s var(--ease),
+    box-shadow  0.45s var(--ease),
+    padding     0.3s  var(--ease);
+}
+
+/* ============================================================
+   FILTER TAB ACTIVE TRANSITION
+   ============================================================ */
+.project-card {
+  transition:
+    opacity     0.35s var(--ease),
+    transform   0.35s var(--ease),
+    box-shadow  0.35s var(--ease);
+}
+
+.project-card.hide {
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+}
+
+/* ============================================================
+   GOLD SHIMMER TEXT EFFECT
+   ============================================================ */
+.text-gold-shine {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 40%,
+    var(--gold) 50%,
+    var(--gold-light) 60%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+/* ============================================================
+   SCROLL INDICATOR (hero bottom)
+   ============================================================ */
+.hero__scroll-arrow {
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+/* ============================================================
+   CAROUSEL FADE
+   ============================================================ */
+.testimonials__track {
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   MOBILE MENU ANIMATION
+   ============================================================ */
+.mobile-menu__link {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), color 0.15s;
+}
+
+.mobile-menu.open .mobile-menu__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.open .mobile-menu__link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.open .mobile-menu__link:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.open .mobile-menu__link:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.open .mobile-menu__link:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.open .mobile-menu__link:nth-child(5) { transition-delay: 0.3s; }
+.mobile-menu.open .mobile-menu__link:nth-child(6) { transition-delay: 0.35s; }
+
+.mobile-menu__cta {
+  opacity: 0;
+  transition: opacity 0.4s var(--ease) 0.4s;
+}
+
+.mobile-menu.open .mobile-menu__cta {
+  opacity: 1;
+}
+
+/* ============================================================
+   REDUCED MOTION — Accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

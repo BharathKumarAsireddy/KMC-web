@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l \"c:/Users/bhara/KMC web\"/*.html \"c:/Users/bhara/KMC web\"/css/*.css \"c:/Users/bhara/KMC web\"/js/*.js)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}
