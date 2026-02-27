@@ -16,9 +16,9 @@
   --gold-dark:     #a8882a;
   --gold-bg:       rgba(201, 168, 76, 0.08);
   --white:         #ffffff;
-  --off-white:     #FAFAF8;
-  --bg-light:      #F8F9FA;
-  --bg-subtle:     #EEF2F7;
+  --off-white:     #0D1826;
+  --bg-light:      #0F1B2D;
+  --bg-subtle:     #0C1520;
   --text:          #1C1C1E;
   --text-muted:    #6B7280;
   --text-light:    #9CA3AF;
@@ -81,7 +81,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--text);
-  background-color: var(--white);
+  background-color: #080D16;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -154,7 +154,7 @@ p {
 
 .section--light {
   background-color: var(--bg-light);
-  background-image: radial-gradient(circle, rgba(26,46,74,0.055) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 28px 28px;
   position: relative;
 }
@@ -171,8 +171,8 @@ p {
 .section--subtle {
   background-color: var(--bg-subtle);
   background-image:
-    linear-gradient(rgba(26,46,74,0.038) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26,46,74,0.038) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 44px 44px;
   position: relative;
   overflow: hidden;
@@ -198,8 +198,8 @@ p {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 25% 75%, rgba(26,46,74,0.03) 0%, transparent 50%),
-    radial-gradient(circle at 75% 25%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    radial-gradient(circle at 25% 75%, rgba(255,255,255,0.025) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(201,168,76,0.06) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -325,6 +325,10 @@ p {
 }
 
 .section-subtitle--white { color: rgba(255,255,255,0.68); }
+
+/* Dark-theme: all sections now have dark backgrounds so headings must be white */
+.section-title  { color: var(--white); }
+.section-subtitle { color: rgba(255,255,255,0.60); }
 
 .gold-rule {
   display: block;

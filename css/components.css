@@ -730,6 +730,7 @@
 .about__text {
   margin-bottom: 1.25rem;
   font-size: 1.05rem;
+  color: rgba(255,255,255,0.70);
 }
 
 .about__values {
@@ -769,6 +770,7 @@
 .about__value-text {
   font-size: 0.9rem;
   font-weight: 500;
+  color: rgba(255,255,255,0.70);
   color: var(--text);
   line-height: 1.5;
 }
@@ -786,7 +788,7 @@
   font-family: var(--ff-heading);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--gold);
   line-height: 1;
   display: block;
 }
@@ -796,7 +798,7 @@
 .mini-stat__label {
   font-size: 0.78rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.50);
   margin-top: 0.35rem;
   display: block;
 }
@@ -960,6 +962,51 @@
   line-height: 1;
   z-index: 1;
   user-select: none;
+}
+
+/* Restaurant card — Indian dish menu preview */
+.division-card__menu {
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 0 0;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--t-slow) var(--ease), opacity var(--t-slow) var(--ease);
+}
+
+.division-card:hover .division-card__menu {
+  max-height: 160px;
+  opacity: 1;
+}
+
+.division-card__menu-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.45rem;
+}
+
+.division-card__menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.26rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.80rem;
+}
+
+.division-card__menu-row span:first-child {
+  color: rgba(255,255,255,0.82);
+}
+
+.division-card__menu-row span:last-child {
+  color: #fbbf24;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================================
@@ -1183,7 +1230,7 @@
   font-family: var(--ff-heading);
   font-size: clamp(1.1rem, 2.2vw, 1.4rem);
   font-style: italic;
-  color: var(--text);
+  color: rgba(255,255,255,0.85);
   line-height: 1.7;
   margin-bottom: 2rem;
 }
@@ -1208,12 +1255,12 @@
 .testimonial-card__name {
   font-weight: 700;
   font-size: 0.95rem;
-  color: var(--text);
+  color: var(--white);
 }
 
 .testimonial-card__role {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.50);
 }
 
 .testimonials__stars {
@@ -1453,7 +1500,7 @@
 .feature-card__icon {
   width: 58px;
   height: 58px;
-  background: var(--bg-subtle);
+  background: #E8EEF6;
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
@@ -1506,6 +1553,7 @@
 .contact__info-text {
   margin-bottom: 2.5rem;
   font-size: 1rem;
+  color: rgba(255,255,255,0.68);
 }
 
 .contact__detail-list {
@@ -1546,6 +1594,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
   text-transform: uppercase;
   color: var(--text-muted);
   display: block;
@@ -1554,7 +1603,7 @@
 .contact__detail-value {
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text);
+  color: rgba(255,255,255,0.80);
   display: block;
 }
 
@@ -1626,7 +1675,7 @@
   padding: 0.8rem 1rem;
   border: 1.5px solid var(--border);
   border-radius: var(--r-sm);
-  background: var(--bg-light);
+  background: #F4F6FA;
   color: var(--text);
   font-size: 0.9rem;
   transition: all var(--t-fast) var(--ease);
